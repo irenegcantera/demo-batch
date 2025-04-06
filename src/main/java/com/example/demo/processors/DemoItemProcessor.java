@@ -1,5 +1,7 @@
 package com.example.demo.processors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.batch.item.ItemProcessor;
 
 /**
@@ -9,6 +11,8 @@ import org.springframework.batch.item.ItemProcessor;
  * @version 1.0, 6 April 2025
  */
 public class DemoItemProcessor implements ItemProcessor<String, String> {
+	
+	private static final Logger logger = LogManager.getLogger();
 	
 	/**
 	 * Process the provided item, returning a potentially modified or new item for
@@ -22,7 +26,9 @@ public class DemoItemProcessor implements ItemProcessor<String, String> {
 	 */
 	@Override
 	public String process(String item) throws Exception {
-
+		
+		logger.debug("Processing item: {}", item);
+		
 		return item;
 		
 	}

@@ -3,6 +3,8 @@ package com.example.demo.readers;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
@@ -16,8 +18,10 @@ import org.springframework.batch.item.UnexpectedInputException;
  */
 public class DemoItemReader implements ItemReader<String> {
 	
-	int i = 0;
-	List<String> items = Arrays.asList("uno", "dos", "tres", "cuatro");
+	private static final Logger logger = LogManager.getLogger();
+	
+	private int i = 0;
+	private List<String> items = Arrays.asList("uno", "dos", "tres", "cuatro");
 	
 	/**
 	 * Reads a piece of input data and advance to the next one and return <code>null</code> 
@@ -38,6 +42,7 @@ public class DemoItemReader implements ItemReader<String> {
 		
 		if(i < items.size()) {
 			item = items.get(i);
+			logger.debug("Reading item: {}", item);
 		}
 		
 		i++;

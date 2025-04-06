@@ -1,5 +1,7 @@
 package com.example.demo.writers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 
@@ -11,6 +13,8 @@ import org.springframework.batch.item.ItemWriter;
  */
 public class DemoItemWriter implements ItemWriter<String> {
 	
+	private static final Logger logger = LogManager.getLogger();
+	
 	/**
 	 * Process the supplied data element
 	 * 
@@ -21,7 +25,7 @@ public class DemoItemWriter implements ItemWriter<String> {
 	public void write(Chunk<? extends String> chunk) throws Exception {
 		
 		for (String item : chunk) {
-			System.out.println(item);
+			logger.debug("Writting item: {}", item);
 		}
 		
 	}
